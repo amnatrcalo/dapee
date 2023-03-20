@@ -14,10 +14,10 @@ public class SubforumEntity {
   @Column(name = "name")
   private String name;
 
-  @OneToOne(
+  @OneToMany(
       mappedBy = "subforum",
       cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-  private PostEntity post;
+  private List<PostEntity> posts;
 
   @ManyToMany(
       fetch = FetchType.LAZY,
@@ -50,12 +50,12 @@ public class SubforumEntity {
     this.name = name;
   }
 
-  public PostEntity getPost() {
-    return post;
+  public List<PostEntity> getPosts() {
+    return posts;
   }
 
-  public void setPost(PostEntity post) {
-    this.post = post;
+  public void setPosts(List<PostEntity> posts) {
+    this.posts = posts;
   }
 
   public List<UserEntity> getAdmins() {

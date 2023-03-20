@@ -21,7 +21,7 @@ public class PostEntity {
   @JoinColumn(name = "creator_id")
   private UserEntity creator;
 
-  @OneToOne(
+  @ManyToOne(
       cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
   @JoinColumn(name = "subforum_id")
   private SubforumEntity subforum;
