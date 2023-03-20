@@ -23,10 +23,10 @@ public class UserEntity {
   @Column(name = "password")
   private String password;
 
-  @OneToOne(
+  @OneToMany(
       mappedBy = "creator",
-      cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-  private PostEntity post;
+      cascade = {CascadeType.ALL})
+  private List<PostEntity> posts;
 
   @ManyToMany(
       fetch = FetchType.LAZY,
@@ -36,6 +36,11 @@ public class UserEntity {
       joinColumns = @JoinColumn(name = "admin_id"),
       inverseJoinColumns = @JoinColumn(name = "subforum_id"))
   private List<SubforumEntity> subforums;
+
+  @OneToMany(
+      mappedBy = "creator",
+      cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+  private List<CommentEntity> comments;
 
   public UserEntity() {}
 
@@ -86,12 +91,12 @@ public class UserEntity {
     this.password = password;
   }
 
-  public PostEntity getPost() {
-    return post;
+  public List<PostEntity> getPosts() {
+    return posts;
   }
 
-  public void setPost(PostEntity post) {
-    this.post = post;
+  public void setPosts(List<PostEntity> posts) {
+    this.posts = posts;
   }
 
   public List<SubforumEntity> getSubforums() {
@@ -100,6 +105,14 @@ public class UserEntity {
 
   public void setSubforums(List<SubforumEntity> subforums) {
     this.subforums = subforums;
+  }
+
+  public List<CommentEntity> getComments() {
+    return comments;
+  }
+
+  public void setComments(List<CommentEntity> comments) {
+    this.comments = comments;
   }
 
   @Override

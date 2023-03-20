@@ -1,6 +1,7 @@
 package com.forum.microservice.administration.entity;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "post")
@@ -16,7 +17,7 @@ public class PostEntity {
   @Column(name = "content")
   private String content;
 
-  @OneToOne(
+  @ManyToOne(
       cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
   @JoinColumn(name = "creator_id")
   private UserEntity creator;
@@ -25,6 +26,11 @@ public class PostEntity {
       cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
   @JoinColumn(name = "subforum_id")
   private SubforumEntity subforum;
+
+  @OneToMany(
+      mappedBy = "post",
+      cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+  private List<CommentEntity> comments;
 
   public PostEntity() {}
 
@@ -71,6 +77,14 @@ public class PostEntity {
 
   public void setSubforum(SubforumEntity subforum) {
     this.subforum = subforum;
+  }
+
+  public List<CommentEntity> getComments() {
+    return comments;
+  }
+
+  public void setComments(List<CommentEntity> comments) {
+    this.comments = comments;
   }
 
   @Override
