@@ -16,7 +16,7 @@ public class SubforumEntity {
 
   @OneToMany(
       mappedBy = "subforum",
-      cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+      cascade = {CascadeType.ALL})
   private List<PostEntity> posts;
 
   @ManyToMany(
