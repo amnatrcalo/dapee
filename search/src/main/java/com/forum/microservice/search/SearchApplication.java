@@ -50,9 +50,10 @@ public class SearchApplication {
 		postsForUserTwo.add(postThree);
 		userTwo.setPosts(postsForUserTwo);
 
-		HashtagEntity hastagsForPostOne = new HashtagEntity("Great");
+		HashtagEntity hashtagForPostOne = new HashtagEntity("Great");
+		hashtagForPostOne.setPost(postOne);
 		List<HashtagEntity> hashtagsOne = new ArrayList<>();
-		hashtagsOne.add(hastagsForPostOne);
+		hashtagsOne.add(hashtagForPostOne);
 		postOne.setHashtags(hashtagsOne);
 
 		SubforumEntity subforumOneAndTwo = new SubforumEntity("Football");

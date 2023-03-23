@@ -23,7 +23,7 @@ public class HashtagEntity {
     public HashtagEntity() {
     }
 
-    public HashtagEntity(String text) {
+    public HashtagEntity(String title) {
         this.title = title;
     }
 
