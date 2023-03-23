@@ -73,6 +73,10 @@ public class AdministrationApplication {
     postTwo.setSubforum(subforumOneAndTwo);
     postThree.setSubforum(new SubforumEntity("Tennis"));
 
+    List<UserEntity> admins = new ArrayList<>();
+    admins.add(userOne);
+    subforumOneAndTwo.setAdmins(admins);
+
     userDao.save(userOne);
     userDao.save(userTwo);
   }
