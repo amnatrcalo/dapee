@@ -12,12 +12,12 @@ public class ReportEntity {
 
     @ManyToOne(
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "user")
+    @JoinColumn(name = "creator_id")
     private UserEntity user;
 
     @ManyToOne(
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "post")
+    @JoinColumn(name = "post_id")
     private PostEntity post;
 
     public int getId() {

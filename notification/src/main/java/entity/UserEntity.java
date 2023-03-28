@@ -25,7 +25,7 @@ public class UserEntity {
     private String password;
 
     @OneToMany(
-            mappedBy = "creator",
+            mappedBy = "creator_id",
             cascade = {CascadeType.ALL})
     private List<PostEntity> posts;
 
