@@ -23,8 +23,7 @@ public class LikeEntity {
     @ManyToOne(
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "comment_id")
-    private PostEntity comment;
-    //napravi onetomany post i comment
+    private CommentEntity comment;
     @Column(name="liked")
     private boolean liked;
 
@@ -52,11 +51,11 @@ public class LikeEntity {
         this.post = post;
     }
 
-    public PostEntity getComment() {
+    public CommentEntity getComment() {
         return comment;
     }
 
-    public void setComment(PostEntity comment) {
+    public void setComment(CommentEntity comment) {
         this.comment = comment;
     }
 

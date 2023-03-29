@@ -31,11 +31,18 @@ public class PostEntity {
             mappedBy = "post",
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<CommentEntity> comments;
-
+    @OneToMany(
+            mappedBy = "post",
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<LikeEntity> likes;
     @OneToMany(
             mappedBy = "post",
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<ReportEntity> reports;
+    @OneToMany(
+            mappedBy = "post",
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<HashtagEntity> hashtags;
     public PostEntity() {}
 
     public PostEntity(String title, String content) {
@@ -98,6 +105,23 @@ public class PostEntity {
     public void setReports(List<ReportEntity> reports) {
         this.reports = reports;
     }
+
+    public List<LikeEntity> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<LikeEntity> likes) {
+        this.likes = likes;
+    }
+
+    public List<HashtagEntity> getHashtags() {
+        return hashtags;
+    }
+
+    public void setHashtags(List<HashtagEntity> hashtags) {
+        this.hashtags = hashtags;
+    }
+
     @Override
     public String toString() {
         return "PostEntity{" + "title='" + title + '\'' + ", content='" + content + '\'' + '}';

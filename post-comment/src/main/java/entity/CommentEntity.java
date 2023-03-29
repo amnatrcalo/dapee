@@ -2,6 +2,8 @@ package entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "comment")
 public class CommentEntity {
@@ -27,6 +29,10 @@ public class CommentEntity {
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "root_comment_id")
     private CommentEntity rootComment;
+    @OneToMany(
+            mappedBy = "comment",
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<LikeEntity> likes;
 
     public CommentEntity() {}
 
@@ -72,6 +78,14 @@ public class CommentEntity {
 
     public void setRootComment(CommentEntity rootComment) {
         this.rootComment = rootComment;
+    }
+
+    public List<LikeEntity> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<LikeEntity> likes) {
+        this.likes = likes;
     }
 
     @Override
