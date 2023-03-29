@@ -1,5 +1,6 @@
 package com.forum.microservice.administration.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -25,11 +26,13 @@ public class PostEntity {
   @ManyToOne(
       cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
   @JoinColumn(name = "subforum_id")
+  @JsonIgnore
   private SubforumEntity subforum;
 
   @OneToMany(
       mappedBy = "post",
       cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+  @JsonIgnore
   private List<CommentEntity> comments;
 
   public PostEntity() {}
