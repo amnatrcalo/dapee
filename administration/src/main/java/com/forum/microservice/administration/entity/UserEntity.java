@@ -25,6 +25,11 @@ public class UserEntity {
   private String password;
 
   @OneToMany(
+          mappedBy = "user",
+          cascade = {CascadeType.ALL})
+  private List<ReportEntity> reports;
+
+  @OneToMany(
       mappedBy = "creator",
       cascade = {CascadeType.ALL})
   @JsonIgnore
@@ -54,6 +59,7 @@ public class UserEntity {
     this.email = email;
     this.password = password;
   }
+
 
   public int getId() {
     return id;
@@ -119,6 +125,13 @@ public class UserEntity {
     this.comments = comments;
   }
 
+  public List<ReportEntity> getReports() {
+    return reports;
+  }
+
+  public void setReports(List<ReportEntity> reports) {
+    this.reports = reports;
+  }
   @Override
   public String toString() {
     return "User{"

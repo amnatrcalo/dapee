@@ -35,6 +35,11 @@ public class PostEntity {
   @JsonIgnore
   private List<CommentEntity> comments;
 
+  @OneToMany(
+          mappedBy = "post",
+          cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+  private List<ReportEntity> reports;
+
   public PostEntity() {}
 
   public PostEntity(String title, String content) {
@@ -88,6 +93,14 @@ public class PostEntity {
 
   public void setComments(List<CommentEntity> comments) {
     this.comments = comments;
+  }
+
+  public List<ReportEntity> getReports() {
+    return reports;
+  }
+
+  public void setReports(List<ReportEntity> reports) {
+    this.reports = reports;
   }
 
   @Override
