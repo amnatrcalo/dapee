@@ -36,8 +36,9 @@ public class PostEntity {
   private List<CommentEntity> comments;
 
   @OneToMany(
-          mappedBy = "post",
-          cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+      mappedBy = "post",
+      cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+  @JsonIgnore
   private List<ReportEntity> reports;
 
   public PostEntity() {}
