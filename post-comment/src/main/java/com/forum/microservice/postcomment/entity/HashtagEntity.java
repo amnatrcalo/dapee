@@ -20,6 +20,13 @@ public class HashtagEntity {
     @Column(name = "name")
     private String name;
 
+    public HashtagEntity() {
+    }
+
+    public HashtagEntity(String name) {
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }

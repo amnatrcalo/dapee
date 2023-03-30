@@ -63,6 +63,13 @@ public class LikeEntity {
         this.comment = comment;
     }
 
+    public LikeEntity() {
+    }
+
+    public LikeEntity(boolean liked) {
+        this.liked = liked;
+    }
+
     public boolean isLiked() {
         return liked;
     }
