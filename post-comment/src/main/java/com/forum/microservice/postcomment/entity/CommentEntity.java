@@ -1,5 +1,6 @@
-package entity;
+package com.forum.microservice.postcomment.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -18,11 +19,13 @@ public class CommentEntity {
     @ManyToOne(
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "post_id")
+    @JsonIgnore
     private PostEntity post;
 
     @ManyToOne(
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "creator_id")
+    @JsonIgnore
     private UserEntity creator;
 
     @OneToOne(
@@ -32,6 +35,7 @@ public class CommentEntity {
     @OneToMany(
             mappedBy = "comment",
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JsonIgnore
     private List<LikeEntity> likes;
 
     public CommentEntity() {}

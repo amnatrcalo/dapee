@@ -1,5 +1,6 @@
-package entity;
+package com.forum.microservice.postcomment.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class SubforumEntity {
     @OneToMany(
             mappedBy = "subforum",
             cascade = {CascadeType.ALL})
+    @JsonIgnore
     private List<PostEntity> posts;
 
     @ManyToMany(
@@ -26,6 +28,7 @@ public class SubforumEntity {
             name = "subforum-admin",
             joinColumns = @JoinColumn(name = "subforum_id"),
             inverseJoinColumns = @JoinColumn(name = "admin_id"))
+    @JsonIgnore
     private List<UserEntity> admins;
 
     public SubforumEntity() {}
