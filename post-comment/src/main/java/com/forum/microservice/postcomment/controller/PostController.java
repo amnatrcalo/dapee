@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/administration")
+@RequestMapping("/post-com")
 public class PostController {
   private PostService postService;
 
