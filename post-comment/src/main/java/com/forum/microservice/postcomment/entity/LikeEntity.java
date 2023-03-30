@@ -29,7 +29,7 @@ public class LikeEntity {
     @JsonIgnore
     private CommentEntity comment;
     @Column(name="liked")
-    private boolean liked;
+    private Boolean liked;
 
     public int getId() {
         return id;
@@ -66,7 +66,7 @@ public class LikeEntity {
     public LikeEntity() {
     }
 
-    public LikeEntity(boolean liked) {
+    public LikeEntity(Boolean liked) {
         this.liked = liked;
     }
 

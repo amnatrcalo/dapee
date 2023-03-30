@@ -10,7 +10,6 @@ import java.util.List;
 
 public interface LikeRepository extends JpaRepository<LikeEntity, Integer> {
     List<LikeEntity> findByVoter(UserEntity creator);
-
     List<LikeEntity> findByPost(PostEntity post);
     List<LikeEntity> findByComment(CommentEntity comment);
 

@@ -1,7 +1,6 @@
 package com.forum.microservice.postcomment.service;
 
 import com.forum.microservice.postcomment.entity.HashtagEntity;
-import com.forum.microservice.postcomment.entity.LikeEntity;
 
 import java.util.List;
 

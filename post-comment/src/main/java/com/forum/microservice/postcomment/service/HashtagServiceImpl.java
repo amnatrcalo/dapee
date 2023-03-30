@@ -51,8 +51,8 @@ public class HashtagServiceImpl implements HashtagService {
     }
 
     @Override
-    public HashtagEntity save(HashtagEntity likeEntity) {
-        return hashtagRepository.save(likeEntity);
+    public HashtagEntity save(HashtagEntity hashtagEntity) {
+        return hashtagRepository.save(hashtagEntity);
     }
 
     @Override
