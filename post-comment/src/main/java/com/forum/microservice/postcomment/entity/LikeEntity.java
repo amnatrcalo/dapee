@@ -3,7 +3,7 @@ package com.forum.microservice.postcomment.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 @Entity
-@Table(name = "like")
+@Table(name = "likes")
 public class LikeEntity {
 
     @Id
@@ -29,7 +29,7 @@ public class LikeEntity {
     @JsonIgnore
     private CommentEntity comment;
     @Column(name="liked")
-    private Boolean liked;
+    private int liked;
 
     public int getId() {
         return id;
@@ -63,18 +63,18 @@ public class LikeEntity {
         this.comment = comment;
     }
 
-    public LikeEntity() {
-    }
-
-    public LikeEntity(Boolean liked) {
-        this.liked = liked;
-    }
-
-    public boolean isLiked() {
+    public int getLiked() {
         return liked;
     }
 
-    public void setLiked(boolean liked) {
+    public void setLiked(int liked) {
+        this.liked = liked;
+    }
+
+    public LikeEntity() {
+    }
+
+    public LikeEntity(int liked) {
         this.liked = liked;
     }
 }
