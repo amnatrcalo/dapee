@@ -5,7 +5,6 @@ import com.forum.microservice.administration.exceptions.PostNotFoundException;
 import com.forum.microservice.administration.exceptions.ReportNotFoundException;
 import com.forum.microservice.administration.service.ReportService;
 import java.util.List;
-import net.minidev.json.JSONValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,9 +46,8 @@ public class ReportController {
   }
 
   @GetMapping("/number-of-reports-for-post/{postId}")
-  public String getNumberOfReportsOfPost(@PathVariable int postId) {
-
-    return JSONValue.toJSONString(reportService.getNumberOfRestrictionsForPost(postId).size());
+  public int getNumberOfReportsOfPost(@PathVariable int postId) {
+    return reportService.getNumberOfRestrictionsForPost(postId).size();
   }
 
   @DeleteMapping("/reports/{reportId}")
