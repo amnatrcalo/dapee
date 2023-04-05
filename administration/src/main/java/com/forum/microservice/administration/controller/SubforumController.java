@@ -55,4 +55,9 @@ public class SubforumController {
 
     subforumService.deleteById(subforumId);
   }
+
+  @GetMapping("/subforums/name/{name}")
+  public SubforumEntity getSubforumByName(@PathVariable String name) {
+    return subforumService.getSubforumByName(name);
+  }
 }
