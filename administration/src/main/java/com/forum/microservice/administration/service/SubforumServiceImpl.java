@@ -41,4 +41,9 @@ public class SubforumServiceImpl implements SubforumService {
   public void deleteById(int id) {
     subforumRepository.deleteById(id);
   }
+
+  @Override
+  public SubforumEntity getSubforumByName(String name) {
+    return subforumRepository.getSubforumByName(name);
+  }
 }

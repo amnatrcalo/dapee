@@ -2,6 +2,9 @@ package com.forum.microservice.administration.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -13,9 +16,14 @@ public class PostEntity {
   private int id;
 
   @Column(name = "title")
+  @NotNull
+  @NotBlank(message = "Title is mandatory")
   private String title;
 
   @Column(name = "content")
+  @NotNull
+  @NotBlank(message = "Contect is mandatory")
+  @Size(message = "Contect shouldn't containt more than 100 characters", max = 100)
   private String content;
 
   @ManyToOne(
@@ -36,8 +44,9 @@ public class PostEntity {
   private List<CommentEntity> comments;
 
   @OneToMany(
-          mappedBy = "post",
-          cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+      mappedBy = "post",
+      cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+  @JsonIgnore
   private List<ReportEntity> reports;
 
   public PostEntity() {}

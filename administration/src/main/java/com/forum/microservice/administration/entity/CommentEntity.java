@@ -1,6 +1,8 @@
 package com.forum.microservice.administration.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "comment")
@@ -11,6 +13,8 @@ public class CommentEntity {
   private int id;
 
   @Column(name = "text")
+  @NotNull
+  @NotBlank(message = "Comment text is mandatory")
   private String text;
 
   @ManyToOne(

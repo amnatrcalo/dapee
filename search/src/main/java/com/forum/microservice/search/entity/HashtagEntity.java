@@ -1,5 +1,6 @@
 package com.forum.microservice.search.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class HashtagEntity {
     @ManyToOne(
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "post_id")
+    @JsonIgnore
     private PostEntity post;
 
     ////////////////////////////

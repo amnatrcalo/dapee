@@ -34,6 +34,15 @@ public class ExceptionHandler {
   }
 
   @org.springframework.web.bind.annotation.ExceptionHandler
+  public ResponseEntity<ErrorResponse> handleException(CommentNotFoundException exc) {
+    ErrorResponse errorResponse = new ErrorResponse();
+    errorResponse.setStatus(HttpStatus.NOT_FOUND.value());
+    errorResponse.setMessage(exc.getMessage());
+
+    return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+  }
+
+  @org.springframework.web.bind.annotation.ExceptionHandler
   public ResponseEntity<ErrorResponse> handleException(Exception exc) {
     ErrorResponse errorResponse = new ErrorResponse();
     errorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
