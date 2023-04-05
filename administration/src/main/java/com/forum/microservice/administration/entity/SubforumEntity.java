@@ -1,6 +1,8 @@
 package com.forum.microservice.administration.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -12,6 +14,8 @@ public class SubforumEntity {
   private int id;
 
   @Column(name = "name")
+  @NotNull
+  @NotBlank(message = "Subforum name is mandatory")
   private String name;
 
   @OneToMany(

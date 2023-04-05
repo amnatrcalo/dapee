@@ -11,4 +11,6 @@ public interface SubforumService {
   SubforumEntity save(SubforumEntity subforumEntity);
 
   void deleteById(int id);
+
+  SubforumEntity getSubforumByName(String name);
 }

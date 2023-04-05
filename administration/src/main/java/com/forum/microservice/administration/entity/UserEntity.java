@@ -2,6 +2,7 @@ package com.forum.microservice.administration.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import java.util.List;
 
 @Entity
@@ -13,15 +14,21 @@ public class UserEntity {
   private int id;
 
   @Column(name = "first_name")
+  @NotNull
+  @NotBlank(message = "First name is mandatory")
   private String firstName;
 
   @Column(name = "last_name")
+  @NotNull
+  @NotBlank(message = "Last name is mandatory")
   private String lastName;
 
   @Column(name = "email")
+  @Email(message = "Entered email is not valid.")
   private String email;
 
   @Column(name = "password")
+  @Size(message = "Password should contain at least 5 characters", min = 5)
   private String password;
 
   @OneToMany(
