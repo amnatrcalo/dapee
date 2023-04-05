@@ -43,4 +43,7 @@ public class ReportEntity {
   public void setPost(PostEntity post) {
     this.post = post;
   }
+
+  public ReportEntity() {
+  }
 }

@@ -2,6 +2,9 @@ package com.forum.microservice.postcomment.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 @Entity
 @Table(name = "hashtag")
 public class HashtagEntity {
@@ -18,6 +21,8 @@ public class HashtagEntity {
     private PostEntity post;
 
     @Column(name = "name")
+    @NotNull
+    @NotBlank(message = "Hashtag name is mandatory")
     private String name;
 
     public HashtagEntity() {

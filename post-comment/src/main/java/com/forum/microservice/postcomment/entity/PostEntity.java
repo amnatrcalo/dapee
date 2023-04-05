@@ -2,6 +2,10 @@ package com.forum.microservice.postcomment.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import java.util.List;
 
 @Entity
@@ -13,11 +17,16 @@ public class PostEntity {
     private int id;
 
     @Column(name = "title")
+    @NotNull
+    @NotBlank(message = "Title is mandatory")
     private String title;
 
     @Column(name = "content")
-    private String content;
 
+    private String content;
+    @NotNull
+    @NotBlank(message = "Content is mandatory")
+    @Size(message = "Content shouldn't contain more than 100 characters", max = 100)
     @ManyToOne(
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "creator_id")

@@ -2,6 +2,8 @@ package com.forum.microservice.postcomment.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
@@ -14,6 +16,8 @@ public class CommentEntity {
     private int id;
 
     @Column(name = "text")
+    @NotNull
+    @NotBlank(message = "Comment text is mandatory")
     private String text;
 
     @ManyToOne(
@@ -35,7 +39,6 @@ public class CommentEntity {
     @OneToMany(
             mappedBy = "comment",
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JsonIgnore
     private List<LikeEntity> likes;
 
     public CommentEntity() {}
