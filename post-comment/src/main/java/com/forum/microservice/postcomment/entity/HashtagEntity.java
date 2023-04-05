@@ -1,6 +1,10 @@
-package entity;
+package com.forum.microservice.postcomment.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 @Entity
 @Table(name = "hashtag")
 public class HashtagEntity {
@@ -13,10 +17,20 @@ public class HashtagEntity {
     @ManyToOne(
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "post_id")
+    @JsonIgnore
     private PostEntity post;
 
     @Column(name = "name")
+    @NotNull
+    @NotBlank(message = "Hashtag name is mandatory")
     private String name;
+
+    public HashtagEntity() {
+    }
+
+    public HashtagEntity(String name) {
+        this.name = name;
+    }
 
     public int getId() {
         return id;

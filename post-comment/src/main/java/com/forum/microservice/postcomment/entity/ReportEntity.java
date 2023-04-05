@@ -1,5 +1,6 @@
-package entity;
+package com.forum.microservice.postcomment.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,11 +14,13 @@ public class ReportEntity {
     @ManyToOne(
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "creator_id")
+    @JsonIgnore
     private UserEntity user;
 
     @ManyToOne(
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "post_id")
+    @JsonIgnore
     private PostEntity post;
 
     public int getId() {
@@ -42,5 +45,8 @@ public class ReportEntity {
 
     public void setPost(PostEntity post) {
         this.post = post;
+    }
+
+    public ReportEntity() {
     }
 }

@@ -1,6 +1,10 @@
-package entity;
+package com.forum.microservice.postcomment.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.util.List;
 
 @Entity
@@ -12,11 +16,14 @@ public class SubforumEntity {
     private int id;
 
     @Column(name = "name")
+    @NotNull
+    @NotBlank(message = "Subforum name is mandatory")
     private String name;
 
     @OneToMany(
             mappedBy = "subforum",
             cascade = {CascadeType.ALL})
+    @JsonIgnore
     private List<PostEntity> posts;
 
     @ManyToMany(
@@ -26,6 +33,7 @@ public class SubforumEntity {
             name = "subforum-admin",
             joinColumns = @JoinColumn(name = "subforum_id"),
             inverseJoinColumns = @JoinColumn(name = "admin_id"))
+    @JsonIgnore
     private List<UserEntity> admins;
 
     public SubforumEntity() {}

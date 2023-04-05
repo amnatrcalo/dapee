@@ -22,8 +22,8 @@ public class PostEntity {
 
   @Column(name = "content")
   @NotNull
-  @NotBlank(message = "Contect is mandatory")
-  @Size(message = "Contect shouldn't containt more than 100 characters", max = 100)
+  @NotBlank(message = "Content is mandatory")
+  @Size(message = "Content shouldn't contain more than 100 characters", max = 100)
   private String content;
 
   @ManyToOne(
