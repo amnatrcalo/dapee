@@ -23,7 +23,7 @@ public class SubforumController {
   }
 
   @GetMapping("/subforums/{subforumId}")
-  public SubforumEntity getUser(@PathVariable int subforumId) {
+  public SubforumEntity getSubforum(@PathVariable int subforumId) {
 
     SubforumEntity subforum = subforumService.findById(subforumId);
 
@@ -46,7 +46,7 @@ public class SubforumController {
   }
 
   @DeleteMapping("/subforums/{subforumId}")
-  public void deleteUser(@PathVariable int subforumId) {
+  public void deleteSubforum(@PathVariable int subforumId) {
     SubforumEntity tempSubforum = subforumService.findById(subforumId);
 
     if (tempSubforum == null) {

@@ -44,6 +44,5 @@ public class ReportEntity {
     this.post = post;
   }
 
-  public ReportEntity() {
-  }
+  public ReportEntity() {}
 }
