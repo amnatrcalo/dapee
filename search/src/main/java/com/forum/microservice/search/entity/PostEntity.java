@@ -1,10 +1,6 @@
 package com.forum.microservice.search.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-
 import java.util.List;
 
 
@@ -18,14 +14,9 @@ public class PostEntity {
     private int id;
 
     @Column(name = "title")
-    @NotNull
-    @NotBlank(message = "Title is mandatory")
     private String title;
 
     @Column(name = "content")
-    @NotNull
-    @NotBlank(message = "Content is mandatory")
-    @Size(message = "Content shouldn't contain more than 100 characters", max = 100)
     private String content;
 
     @ManyToOne(

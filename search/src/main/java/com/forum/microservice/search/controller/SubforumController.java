@@ -45,11 +45,6 @@ public class SubforumController {
         return subforumService.save(subforum);
     }
 
-    @GetMapping("/subforums/substring/{name}")
-    public SubforumEntity getSubforumContainsSubstring(@PathVariable String name) {
-        return subforumService.getSubforumBySubstring(name);
-    }
-
     @DeleteMapping("/subforums/{subforumId}")
     public void deleteUser(@PathVariable int subforumId) {
         SubforumEntity tempSubforum = subforumService.findById(subforumId);

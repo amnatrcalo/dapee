@@ -39,11 +39,6 @@ public class SubforumServiceImpl implements com.forum.microservice.search.servic
     }
 
     @Override
-    public SubforumEntity getSubforumBySubstring(String name) {
-        return subforumRepository.getSubforumContainsSubstring(name);
-    }
-
-    @Override
     public void deleteById(int id) {
         subforumRepository.deleteById(id);
     }
