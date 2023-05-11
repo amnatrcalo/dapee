@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: login
+server:
+  port: 8088
+
+  eureka:
+    instance:
+      hostname: localhost
+    client:
+      register-with-eureka: true
