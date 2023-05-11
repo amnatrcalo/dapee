@@ -22,7 +22,14 @@ spring:
           enabled: 'true'
           lower-case-service-id: 'true'
       routes:
-        -id: administration
-        uri: http://localhost:8085/
-        predicates:
-          - Path=/administration/**
+        - id: administration
+          uri: http://localhost:8085/
+          predicates:
+            - Path=/administration/**
+        - id: postcom
+          uri: http://localhost:8086/
+          predicates:
+            - Path=/post-com/**
+
+
+       
