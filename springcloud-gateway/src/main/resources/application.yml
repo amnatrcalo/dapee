@@ -30,6 +30,10 @@ spring:
           uri: http://localhost:8086/
           predicates:
             - Path=/post-com/**
+        - id: search
+          uri: http://localhost:8087/
+          predicates:
+            - Path=/search/**
 
 
        
