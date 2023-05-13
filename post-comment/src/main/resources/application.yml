@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: postcom
+server:
+  port: 8086
+
+  eureka:
+    instance:
+      hostname: localhost
+    client:
+      register-with-eureka: true
