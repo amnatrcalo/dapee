@@ -1,29 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <excludeFromCompile>
+      <directory url="file://$PROJECT_DIR$/test/src/main/resources/archetype-resources" includeSubdirectories="true" />
+    </excludeFromCompile>
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="notification" />
+        <module name="central_configuration" />
         <module name="search" />
-        <module name="login" />
-        <module name="post-comment" />
         <module name="administration" />
+        <module name="system-event" />
+        <module name="login" />
+        <module name="sytem-events" />
+        <module name="post-comment" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="administration" target="19" />
+      <module name="central_configuration" target="19" />
       <module name="login" target="19" />
       <module name="notification" target="19" />
       <module name="post-comment" target="19" />
       <module name="search" target="19" />
+      <module name="system-event" target="19" />
+      <module name="system-events" target="19" />
+      <module name="sytem-events" target="19" />
+      <module name="test" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="administration" options="-parameters" />
+      <module name="central_configuration" options="-parameters" />
       <module name="login" options="-parameters" />
       <module name="notification" options="-parameters" />
       <module name="post-comment" options="-parameters" />
