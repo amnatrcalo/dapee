@@ -7,11 +7,17 @@ eureka:
     preferIpAddress: true
   client:
     fetchRegistry: true
-    registerWithEureka: false
+    registerWithEureka: true
     serviceUrl:
       defaultZone: http://localhost:8761/eureka
 
+
+
+
 spring:
+  main:
+    web-application-type: reactive
+    allow-bean-definition-overriding: true
   application:
     name: api-gateway
 
@@ -35,5 +41,9 @@ spring:
           predicates:
             - Path=/search/**
 
-
+jjwt:
+  security:
+    key: ThisIsSecretForJWTHS512SignatureAlgorithmThatMUSTHave64ByteLength
+  token:
+    validity: 28800
        
