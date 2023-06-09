@@ -10,7 +10,6 @@
       <module fileurl="file://$PROJECT_DIR$/notification/notification.iml" filepath="$PROJECT_DIR$/notification/notification.iml" />
       <module fileurl="file://$PROJECT_DIR$/post-comment/post-comment.iml" filepath="$PROJECT_DIR$/post-comment/post-comment.iml" />
       <module fileurl="file://$PROJECT_DIR$/search/search.iml" filepath="$PROJECT_DIR$/search/search.iml" />
-      <module fileurl="file://$PROJECT_DIR$/system-event/system-event.iml" filepath="$PROJECT_DIR$/system-event/system-event.iml" />
       <module fileurl="file://$PROJECT_DIR$/sytem-events/sytem-events.iml" filepath="$PROJECT_DIR$/sytem-events/sytem-events.iml" />
     </modules>
   </component>

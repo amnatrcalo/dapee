@@ -15,7 +15,6 @@
         <module name="search" />
         <module name="administration" />
         <module name="eureka" />
-        <module name="system-event" />
         <module name="login" />
         <module name="sytem-events" />
         <module name="post-comment" />
@@ -25,13 +24,14 @@
       <module name="administration" target="19" />
       <module name="central_configuration" target="19" />
       <module name="eureka" target="19" />
+      <module name="grpc-service" target="19" />
       <module name="login" target="19" />
       <module name="notification" target="19" />
       <module name="post-comment" target="19" />
       <module name="search" target="19" />
-      <module name="system-event" target="1.5" />
+      <module name="system-event" target="19" />
       <module name="system-events" target="19" />
-      <module name="sytem-events" target="19" />
+      <module name="sytem-events" target="11" />
       <module name="test" target="1.5" />
     </bytecodeTargetLevel>
   </component>

@@ -9,7 +9,6 @@
         <option value="$PROJECT_DIR$/post-comment/pom.xml" />
         <option value="$PROJECT_DIR$/administration/pom.xml" />
         <option value="$PROJECT_DIR$/central_configuration/pom.xml" />
-        <option value="$PROJECT_DIR$/system-event/pom.xml" />
         <option value="$PROJECT_DIR$/sytem-events/pom.xml" />
         <option value="$PROJECT_DIR$/eureka/pom.xml" />
       </list>
