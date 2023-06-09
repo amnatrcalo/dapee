@@ -23,13 +23,11 @@ public class CommentEntity {
     @ManyToOne(
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "post_id")
-    @JsonIgnore
     private PostEntity post;
 
     @ManyToOne(
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "creator_id")
-    @JsonIgnore
     private UserEntity creator;
 
     @OneToOne(

@@ -76,4 +76,25 @@ public class PostServiceImpl implements PostService {
   public void deleteById(int id) {
     postRepository.deleteById(id);
   }
+
+  @Override
+  public List<PostEntity> getPosts() {
+    return postRepository.getPosts();
+  }
+
+  @Override
+  public PostEntity find(int id) {
+    Optional<PostEntity> foundEntity = postRepository.find(id);
+    if (foundEntity.isPresent()) {
+      return foundEntity.get();
+    } else {
+      throw new PostNotFoundException("Post id not found: " + id);
+    }
+  }
+
+  @Override
+  public void softDelete(PostEntity post) {
+    post.setDeleted(true);
+    postRepository.save(post);
+  }
 }
