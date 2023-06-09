@@ -34,6 +34,10 @@ spring:
           uri: http://localhost:8087/
           predicates:
             - Path=/search/**
+        - id: login
+          uri: http://localhost:8088/
+          predicates:
+            - Path=/user/**
 
 
        
