@@ -2,6 +2,11 @@ package com.forum.microservice.postcomment.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import java.util.List;
 
 @Entity
@@ -19,6 +24,7 @@ public class UserEntity {
     private String lastName;
 
     @Column(name = "email")
+    @Email(message = "Entered email is not valid.")
     private String email;
 
     @Column(name = "password")
@@ -46,11 +52,6 @@ public class UserEntity {
     @JsonIgnore
     private List<SubforumEntity> subforums;
 
-    @OneToMany(
-            mappedBy = "voter",
-            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JsonIgnore
-    private List<LikeEntity> likes;
     @OneToMany(
             mappedBy = "creator",
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
@@ -134,17 +135,10 @@ public class UserEntity {
         return reports;
     }
 
-    public List<LikeEntity> getLikes() {
-        return likes;
-    }
-
-    public void setLikes(List<LikeEntity> likes) {
-        this.likes = likes;
-    }
-
     public void setReports(List<ReportEntity> reports) {
         this.reports = reports;
     }
+
     @Override
     public String toString() {
         return "User{"

@@ -39,9 +39,12 @@ public class PostEntity {
 
   @OneToMany(
       mappedBy = "post",
-      cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+      cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE})
   @JsonIgnore
   private List<CommentEntity> comments;
+
+  @Column(name = "deleted")
+  private Boolean deleted = false;
 
   @OneToMany(
       mappedBy = "post",
@@ -110,6 +113,14 @@ public class PostEntity {
 
   public void setReports(List<ReportEntity> reports) {
     this.reports = reports;
+  }
+
+  public Boolean getDeleted() {
+    return deleted;
+  }
+
+  public void setDeleted(Boolean deleted) {
+    this.deleted = deleted;
   }
 
   @Override

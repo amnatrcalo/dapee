@@ -24,13 +24,9 @@ public class PostEntity {
     @Column(name = "content")
 
     private String content;
-    @NotNull
-    @NotBlank(message = "Content is mandatory")
-    @Size(message = "Content shouldn't contain more than 100 characters", max = 100)
     @ManyToOne(
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "creator_id")
-    @JsonIgnore
     private UserEntity creator;
 
     @ManyToOne(
@@ -41,7 +37,7 @@ public class PostEntity {
 
     @OneToMany(
             mappedBy = "post",
-            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE})
     @JsonIgnore
     private List<CommentEntity> comments;
     @OneToMany(
