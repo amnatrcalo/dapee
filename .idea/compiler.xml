@@ -1,33 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <excludeFromCompile>
+      <directory url="file://$PROJECT_DIR$/test/src/main/resources/archetype-resources" includeSubdirectories="true" />
+    </excludeFromCompile>
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="notification" />
+        <module name="central_configuration" />
         <module name="search" />
+        <module name="springcloud-gateway" />
+        <module name="administration" />
+        <module name="eureka" />
         <module name="login" />
         <module name="post-comment" />
-        <module name="administration" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="administration" target="19" />
+      <module name="api-gateway" target="11" />
+      <module name="central_configuration" target="19" />
+      <module name="eureka" target="19" />
       <module name="login" target="19" />
       <module name="notification" target="19" />
       <module name="post-comment" target="19" />
       <module name="search" target="19" />
+      <module name="springcloud-gateway" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="administration" options="-parameters" />
+      <module name="api-gateway" options="-parameters" />
+      <module name="central_configuration" options="-parameters" />
+      <module name="eureka" options="-parameters" />
       <module name="login" options="-parameters" />
       <module name="notification" options="-parameters" />
       <module name="post-comment" options="-parameters" />
       <module name="search" options="-parameters" />
+      <module name="springcloud-gateway" options="-parameters" />
     </option>
   </component>
 </project>
