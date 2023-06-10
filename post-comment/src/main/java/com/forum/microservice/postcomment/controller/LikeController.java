@@ -5,6 +5,7 @@ import com.forum.microservice.postcomment.exceptions.LikeNotFoundException;
 import com.forum.microservice.postcomment.service.LikeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -12,6 +13,9 @@ import java.util.List;
 @RequestMapping("/post-com")
 public class LikeController {
     private LikeService likeService;
+
+    @Autowired
+    public RestTemplate restTemplate;
 
     @Autowired
     public LikeController(LikeService likeService) {
@@ -36,6 +40,10 @@ public class LikeController {
     @PostMapping("/likes")
     public LikeEntity addLike(@RequestBody LikeEntity like) {
         like.setId(0);
+        String url = "http://notification/notification/notifications";
+
+       // restTemplate.postForEntity(url, null,);
+
         return likeService.save(like);
     }
     @GetMapping("/likes-for-user/{userId}")
