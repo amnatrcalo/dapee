@@ -43,8 +43,6 @@ public class PostEntity {
   @JsonIgnore
   private List<CommentEntity> comments;
 
-  @Column(name = "deleted")
-  private Boolean deleted = false;
 
   @OneToMany(
       mappedBy = "post",
@@ -115,13 +113,6 @@ public class PostEntity {
     this.reports = reports;
   }
 
-  public Boolean getDeleted() {
-    return deleted;
-  }
-
-  public void setDeleted(Boolean deleted) {
-    this.deleted = deleted;
-  }
 
   @Override
   public String toString() {
