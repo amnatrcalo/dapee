@@ -3,9 +3,16 @@ package com.forum.microservice.administration.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.forum.microservice.administration.entity.PostEntity;
+import com.forum.microservice.administration.entity.SubforumEntity;
+import com.forum.microservice.administration.entity.UserEntity;
 import com.forum.microservice.administration.exceptions.PostNotFoundException;
+import com.forum.microservice.administration.model.Post;
 import com.forum.microservice.administration.service.PostService;
 import java.util.List;
+
+import com.forum.microservice.administration.service.SubforumService;
+import com.forum.microservice.administration.service.UserService;
+import org.apache.catalina.User;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +22,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/administration")
 public class PostController {
   private PostService postService;
+  private UserService userService;
+  private SubforumService subforumService;
 
   private final RabbitTemplate template;
 
@@ -23,8 +32,10 @@ public class PostController {
   private final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
   @Autowired
-  public PostController(PostService postService, RabbitTemplate template, Queue queue) {
+  public PostController(PostService postService, UserService userService, SubforumService subforumService, RabbitTemplate template, Queue queue) {
     this.postService = postService;
+    this.userService=userService;
+    this.subforumService=subforumService;
     this.template = template;
     this.queue = queue;
   }
@@ -49,9 +60,16 @@ public class PostController {
   }
 
   @PostMapping("/posts")
-  public PostEntity addPost(@RequestBody PostEntity post) {
-    post.setId(0);
-   return postService.save(post);
+  public PostEntity addPost(@RequestBody Post post) {
+   PostEntity postEntity = new PostEntity();
+   postEntity.setTitle(post.getTitle());
+   postEntity.setContent(post.getContent());
+   UserEntity creator = userService.findById(post.getCreatorId());
+   postEntity.setCreator(creator);
+    SubforumEntity subforum = subforumService.findById(post.getSubforumId());
+    postEntity.setSubforum(subforum);
+
+   return postService.save(postEntity);
   }
 
   @PutMapping("/posts")
