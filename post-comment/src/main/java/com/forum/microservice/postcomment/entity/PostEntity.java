@@ -20,13 +20,12 @@ public class PostEntity {
     @NotNull
     @NotBlank(message = "Title is mandatory")
     private String title;
-
-    @Column(name = "content")
-
-    private String content;
     @NotNull
     @NotBlank(message = "Content is mandatory")
     @Size(message = "Content shouldn't contain more than 100 characters", max = 100)
+    @Column(name = "content")
+
+    private String content;
     @ManyToOne(
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "creator_id")
