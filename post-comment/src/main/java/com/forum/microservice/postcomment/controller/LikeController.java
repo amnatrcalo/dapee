@@ -10,6 +10,7 @@ import com.forum.microservice.postcomment.service.PostService;
 import com.forum.microservice.postcomment.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -20,8 +21,10 @@ public class LikeController {
     private UserService userService;
     private PostService postService;
 
+
     @Autowired
     public LikeController(LikeService likeService, UserService userService, PostService postService) {
+
         this.likeService = likeService;
         this.postService = postService;
         this.userService = userService;
@@ -43,6 +46,7 @@ public class LikeController {
         return like;
     }
     @PostMapping("/likes")
+
     public LikeEntity addLike(@RequestBody Like like) {
        LikeEntity likeEntity = new LikeEntity();
         UserEntity user = userService.findById(like.getVoterId());
@@ -50,6 +54,7 @@ public class LikeController {
         PostEntity post = postService.findById(like.getPostId());
         likeEntity.setPost(post);
         return likeService.save(likeEntity);
+
     }
     @GetMapping("/likes-for-user/{userId}")
     public List<LikeEntity> getLikesForUser(@PathVariable int userId) {
