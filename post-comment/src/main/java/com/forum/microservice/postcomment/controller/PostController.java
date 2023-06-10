@@ -1,8 +1,13 @@
 package com.forum.microservice.postcomment.controller;
 
 import com.forum.microservice.postcomment.entity.PostEntity;
+import com.forum.microservice.postcomment.entity.SubforumEntity;
+import com.forum.microservice.postcomment.entity.UserEntity;
 import com.forum.microservice.postcomment.exceptions.PostNotFoundException;
+import com.forum.microservice.postcomment.model.Post;
 import com.forum.microservice.postcomment.service.PostService;
+import com.forum.microservice.postcomment.service.SubforumService;
+import com.forum.microservice.postcomment.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,10 +17,13 @@ import java.util.List;
 @RequestMapping("/post-com")
 public class PostController {
   private PostService postService;
-
+  private UserService userService;
+  private SubforumService subforumService;
   @Autowired
-  public PostController(PostService postService) {
+  public PostController(PostService postService, UserService userService, SubforumService subforumService) {
     this.postService = postService;
+    this.userService=userService;
+    this.subforumService=subforumService;
   }
 
   @GetMapping("/posts")
@@ -35,9 +43,16 @@ public class PostController {
   }
 
   @PostMapping("/posts")
-  public PostEntity addPost(@RequestBody PostEntity post) {
-    post.setId(0);
-    return postService.save(post);
+  public PostEntity addPost(@RequestBody Post post) {
+    PostEntity postEntity = new PostEntity();
+    postEntity.setTitle(post.getTitle());
+    postEntity.setContent(post.getContent());
+    UserEntity creator = userService.findById(post.getCreatorId());
+    postEntity.setCreator(creator);
+    SubforumEntity subforum = subforumService.findById(post.getSubforumId());
+    postEntity.setSubforum(subforum);
+
+    return postService.save(postEntity);
   }
 
   @PutMapping("/posts")
