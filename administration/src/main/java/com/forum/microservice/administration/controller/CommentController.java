@@ -1,9 +1,15 @@
 package com.forum.microservice.administration.controller;
 
 import com.forum.microservice.administration.entity.CommentEntity;
+import com.forum.microservice.administration.entity.PostEntity;
+import com.forum.microservice.administration.entity.UserEntity;
 import com.forum.microservice.administration.exceptions.CommentNotFoundException;
+import com.forum.microservice.administration.model.Comment;
 import com.forum.microservice.administration.service.CommentService;
 import java.util.List;
+
+import com.forum.microservice.administration.service.PostService;
+import com.forum.microservice.administration.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,10 +17,14 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/administration")
 public class CommentController {
   private CommentService commentService;
+  private UserService userService;
+  private PostService postService;
 
   @Autowired
-  public CommentController(CommentService commentService) {
+  public CommentController(CommentService commentService, UserService userService, PostService postService) {
     this.commentService = commentService;
+    this.userService = userService;
+    this.postService = postService;
   }
 
   @GetMapping("/comments")
@@ -34,9 +44,15 @@ public class CommentController {
   }
 
   @PostMapping("/comments")
-  public CommentEntity addComment(@RequestBody CommentEntity comment) {
-    comment.setId(0);
-    return commentService.save(comment);
+  public CommentEntity addComment(@RequestBody Comment comment) {
+    CommentEntity commentEntity = new CommentEntity();
+    commentEntity.setText(comment.getText());
+    UserEntity user = userService.findById(comment.getCreatorId());
+    PostEntity post = postService.findById(comment.getPostId());
+    commentEntity.setPost(post);
+    commentEntity.setCreator(user);
+
+    return commentService.save(commentEntity);
   }
 
   @PutMapping("/comments")
