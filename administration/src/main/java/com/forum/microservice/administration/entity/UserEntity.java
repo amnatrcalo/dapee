@@ -32,8 +32,7 @@ public class UserEntity {
   private String password;
 
   @OneToMany(
-      mappedBy = "user",
-      cascade = {CascadeType.ALL})
+      mappedBy = "user")
   @JsonIgnore
   private List<ReportEntity> reports;
 

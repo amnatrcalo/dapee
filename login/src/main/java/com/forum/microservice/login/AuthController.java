@@ -53,9 +53,6 @@ public class AuthController {
             throw new WrappedException(USER_ALREADY_EXISTS);
         }
 
-
-
-
         customUser.setPassword(passwordEncoder.encode(customUser.getPassword()));
 
         Role roles = roleDataService.getRoleByName("ROLE_ADMIN");
