@@ -39,9 +39,10 @@ public class PostEntity {
 
   @OneToMany(
       mappedBy = "post",
-      cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+      cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE})
   @JsonIgnore
   private List<CommentEntity> comments;
+
 
   @OneToMany(
       mappedBy = "post",
@@ -111,6 +112,7 @@ public class PostEntity {
   public void setReports(List<ReportEntity> reports) {
     this.reports = reports;
   }
+
 
   @Override
   public String toString() {

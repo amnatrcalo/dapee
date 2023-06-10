@@ -13,8 +13,6 @@ public class CommentEntity {
   private int id;
 
   @Column(name = "text")
-  @NotNull
-  @NotBlank(message = "Comment text is mandatory")
   private String text;
 
   @ManyToOne(

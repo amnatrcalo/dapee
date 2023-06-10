@@ -15,4 +15,10 @@ public interface PostService {
   PostEntity save(PostEntity postEntity);
 
   void deleteById(int id);
+
+  List<PostEntity> getPosts();
+
+  PostEntity find(int id);
+
+  void softDelete(PostEntity post);
 }

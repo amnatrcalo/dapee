@@ -8,6 +8,11 @@
         <option value="$PROJECT_DIR$/notification/pom.xml" />
         <option value="$PROJECT_DIR$/post-comment/pom.xml" />
         <option value="$PROJECT_DIR$/administration/pom.xml" />
+
+        <option value="$PROJECT_DIR$/central_configuration/pom.xml" />
+        <option value="$PROJECT_DIR$/eureka/pom.xml" />
+
+        <option value="$PROJECT_DIR$/springcloud-gateway/pom.xml" />
       </list>
     </option>
   </component>
