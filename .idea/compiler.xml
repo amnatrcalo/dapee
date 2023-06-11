@@ -15,7 +15,6 @@
         <module name="search" />
         <module name="administration" />
         <module name="eureka" />
-        <module name="login" />
         <module name="sytem-events" />
         <module name="post-comment" />
       </profile>
@@ -44,6 +43,7 @@
       <module name="notification" options="-parameters" />
       <module name="post-comment" options="-parameters" />
       <module name="search" options="-parameters" />
+      <module name="sytem-events" options="-parameters" />
     </option>
   </component>
 </project>

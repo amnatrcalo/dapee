@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import com.forum.microservice.search.entity.UserEntity;
 import com.forum.microservice.search.exceptions.UserNotFoundException;
 import com.forum.microservice.search.service.UserService;
+import com.forum.microservice.search.service.SystemEventClient;
 import java.util.List;
 
 /////////////
@@ -13,6 +14,8 @@ import java.util.List;
 @RequestMapping("/search")
 public class UserController {
     private UserService userService;
+
+    private SystemEventClient eventClient;
 
     @Autowired
     public UserController(UserService userService) {
@@ -31,7 +34,7 @@ public class UserController {
         if (user == null) {
             throw new UserNotFoundException("User id not found: " + userId);
         }
-
+        eventClient.postEvent("vrijemetest","servistest","usertest","actiontest","resourcetest","responsetest");
         return user;
     }
 

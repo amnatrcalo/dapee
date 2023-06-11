@@ -1,6 +1,6 @@
 package com.example.sytemevents;
-import com.example.sytemevents.SystemEventModel;
-import com.example.sytemevents.SystemEventRepository;
+//import com.example.sytemevents.SystemEventModel;
+//import com.example.sytemevents.SystemEventRepository;
 import com.example.sytemevents.grpc.SystemEventRequest;
 import com.example.sytemevents.grpc.SystemEventResponse;
 import com.example.sytemevents.grpc.SystemEventsServiceGrpc;
@@ -13,8 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @GrpcService
 public class SystemEventService extends SystemEventsServiceGrpc.SystemEventsServiceImplBase{
-    @Autowired
-    private SystemEventRepository systemEventRepository;
+    //@Autowired
+    //private SystemEventRepository systemEventRepository;
 
 
 
@@ -22,22 +22,23 @@ public class SystemEventService extends SystemEventsServiceGrpc.SystemEventsServ
     public void log(SystemEventRequest request, StreamObserver<SystemEventResponse> responseObserver) {
         System.out.println("LOG");
 
-        SystemEventModel systemEvent = new SystemEventModel();
-        systemEvent.setTimestamp(request.getTimestamp());
+        //SystemEventModel systemEvent = new SystemEventModel();
+      /*  systemEvent.setTimestamp(request.getTimestamp());
         systemEvent.setMicroservice(request.getMicroservice());
         systemEvent.setUser(request.getUser());
         systemEvent.setAction(request.getAction());
         systemEvent.setResource(request.getResource());
         systemEvent.setResponseType(request.getResponseType());
 
-        System.out.println(systemEvent.getTimestamp());
-        System.out.println(systemEvent.getMicroservice());
-        System.out.println(systemEvent.getUser());
-        System.out.println(systemEvent.getAction());
-        System.out.println(systemEvent.getResource());
-        System.out.println(systemEvent.getResponseType());
+       */
 
-        systemEventRepository.save(systemEvent);
+        //systemEventRepository.save(systemEvent);
+        System.out.println(request.getTimestamp());
+        System.out.println(request.getMicroservice());
+        System.out.println(request.getUser());
+        System.out.println(request.getAction());
+        System.out.println(request.getResource());
+        System.out.println(request.getResponseType());
 
         SystemEventResponse response = SystemEventResponse.newBuilder()
                 .setResponsemessage("logged!")

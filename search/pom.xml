@@ -91,9 +91,24 @@
             <version>2.13.1.RELEASE</version>
         </dependency>
 		<dependency>
+			<groupId>com.example.sytemevents</groupId>
+			<artifactId>sytem-events</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>io.grpc</groupId>
+			<artifactId>grpc-stub</artifactId>
+			<version>1.54.1</version>
+		</dependency>
+		<dependency>
 			<groupId>clj-grpc</groupId>
 			<artifactId>clj-grpc</artifactId>
 			<version>0.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.findbugs</groupId>
+			<artifactId>jsr305</artifactId>
+			<version>3.0.0</version>
 		</dependency>
 	</dependencies>
 

@@ -1,17 +1,16 @@
-package com.example.sytemevents;
+/*package com.example.sytemevents;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import .persistence.*;
 
 
 @Entity
-@Table(name="system_event")
 public class SystemEventModel {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    //@Id
+    //@GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
     private String timestamp;
@@ -71,4 +70,4 @@ public class SystemEventModel {
     public void setResponseType(String responseType) {
         this.responseType = responseType;
     }
-}
+}*/

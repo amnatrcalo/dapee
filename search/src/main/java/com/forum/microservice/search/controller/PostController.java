@@ -1,6 +1,7 @@
 package com.forum.microservice.search.controller;
 
 import com.forum.microservice.search.entity.PostEntity;
+import com.forum.microservice.search.service.SystemEventClient;
 import com.forum.microservice.search.exceptions.PostNotFoundException;
 import com.forum.microservice.search.service.PostService;
 import java.util.List;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/search")
 public class PostController {
+    /////////
+    private SystemEventClient eventClient;
+    /////////
     private PostService postService;
 
     @Autowired
@@ -36,6 +40,9 @@ public class PostController {
     @PostMapping("/posts")
     public PostEntity addPost(@RequestBody PostEntity post) {
         post.setId(0);
+        //////
+        //eventClient.postEvent("vrijemetest","servistest","usertest","actiontest","resourcetest","responsetest");
+        //////
         return postService.save(post);
     }
 
