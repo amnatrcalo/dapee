@@ -47,6 +47,11 @@ public class ReportEntity {
         this.post = post;
     }
 
-    public ReportEntity() {
+    public ReportEntity() {}
+
+    public ReportEntity(int id, UserEntity user, PostEntity post) {
+        this.id = id;
+        this.user = user;
+        this.post = post;
     }
 }

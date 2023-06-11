@@ -50,6 +50,7 @@ public class PostController {
     UserEntity creator = userService.findById(post.getCreatorId());
     postEntity.setCreator(creator);
     SubforumEntity subforum = subforumService.findById(post.getSubforumId());
+    System.out.println(subforum);
     postEntity.setSubforum(subforum);
 
     return postService.save(postEntity);

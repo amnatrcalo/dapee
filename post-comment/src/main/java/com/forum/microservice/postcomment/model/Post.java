@@ -41,4 +41,14 @@ public class Post {
     public void setSubforumId(Integer subforumId) {
         this.subforumId = subforumId;
     }
+
+    public Post(String title, String content, Integer creatorId, Integer subforumId) {
+        this.title = title;
+        this.content = content;
+        this.creatorId = creatorId;
+        this.subforumId = subforumId;
+    }
+
+    public Post() {
+    }
 }
