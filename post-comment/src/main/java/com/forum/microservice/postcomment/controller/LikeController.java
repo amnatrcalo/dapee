@@ -56,6 +56,7 @@ public class LikeController {
 
     public LikeEntity addLike(@RequestBody Like like) throws URISyntaxException {
        LikeEntity likeEntity = new LikeEntity();
+       likeEntity.setLiked(true);
         UserEntity user = userService.findById(like.getVoterId());
        likeEntity.setVoter(user);
         PostEntity post = postService.findById(like.getPostId());
