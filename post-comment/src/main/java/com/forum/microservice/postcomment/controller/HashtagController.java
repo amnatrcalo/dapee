@@ -1,8 +1,12 @@
 package com.forum.microservice.postcomment.controller;
 
 import com.forum.microservice.postcomment.entity.HashtagEntity;
+import com.forum.microservice.postcomment.entity.PostEntity;
 import com.forum.microservice.postcomment.exceptions.HashtagNotFoundException;
+import com.forum.microservice.postcomment.model.Hashtag;
 import com.forum.microservice.postcomment.service.HashtagService;
+import com.forum.microservice.postcomment.service.PostService;
+import com.forum.microservice.postcomment.service.SubforumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,10 +16,12 @@ import java.util.List;
 @RequestMapping("/post-com")
 public class HashtagController {
     private HashtagService hashtagService;
+    private PostService postService;
 
     @Autowired
-    public HashtagController(HashtagService hashtagService) {
+    public HashtagController(HashtagService hashtagService, PostService postService) {
         this.hashtagService = hashtagService;
+        this.postService = postService;
     }
 
     @GetMapping("/hashtags")
@@ -34,9 +40,14 @@ public class HashtagController {
         return hashtag;
     }
     @PostMapping("/hashtags")
-    public HashtagEntity addHashtag(@RequestBody HashtagEntity hashtag) {
-        hashtag.setId(0);
-        return hashtagService.save(hashtag);
+    public HashtagEntity addHashtag(@RequestBody Hashtag hashtag) {
+
+        HashtagEntity hashtagEntity = new HashtagEntity();
+        hashtagEntity.setName(hashtag.getName());
+        PostEntity post = postService.findById(hashtag.getPostId());
+        hashtagEntity.setPost(post);
+
+        return hashtagService.save(hashtagEntity);
     }
     @GetMapping("/hashtags-for-post/{postId}")
     public List<HashtagEntity> getHashtagsForPost(@PathVariable int postId) {

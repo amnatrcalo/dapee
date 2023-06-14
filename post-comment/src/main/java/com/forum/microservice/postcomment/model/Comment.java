@@ -29,4 +29,13 @@ public class Comment {
     public void setCreatorId(Integer creatorId) {
         this.creatorId = creatorId;
     }
+
+    public Comment(String text, Integer postId, Integer creatorId) {
+        this.text = text;
+        this.postId = postId;
+        this.creatorId = creatorId;
+    }
+
+    public Comment() {
+    }
 }

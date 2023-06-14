@@ -74,6 +74,13 @@ public class SubforumEntity {
         this.admins = admins;
     }
 
+    public SubforumEntity(int id, String name, List<PostEntity> posts, List<UserEntity> admins) {
+        this.id = id;
+        this.name = name;
+        this.posts = posts;
+        this.admins = admins;
+    }
+
     @Override
     public String toString() {
         return "SubforumEntity{" + "name='" + name + '\'' + '}';

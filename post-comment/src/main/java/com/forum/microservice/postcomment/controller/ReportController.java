@@ -1,9 +1,15 @@
 package com.forum.microservice.postcomment.controller;
 
+import com.forum.microservice.postcomment.entity.PostEntity;
 import com.forum.microservice.postcomment.entity.ReportEntity;
+import com.forum.microservice.postcomment.entity.UserEntity;
 import com.forum.microservice.postcomment.exceptions.PostNotFoundException;
 import com.forum.microservice.postcomment.exceptions.ReportNotFoundException;
+import com.forum.microservice.postcomment.model.Report;
+import com.forum.microservice.postcomment.service.PostService;
+import com.forum.microservice.postcomment.service.SubforumService;
 import com.forum.microservice.postcomment.service.ReportService;
+import com.forum.microservice.postcomment.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,10 +19,14 @@ import java.util.List;
 @RequestMapping("/post-com")
 public class ReportController {
   private ReportService reportService;
+  private UserService userService;
+  private PostService postService;
 
   @Autowired
-  public ReportController(ReportService reportService) {
+  public ReportController(ReportService reportService, UserService userService, PostService postService) {
     this.reportService = reportService;
+    this.userService = userService;
+    this.postService = postService;
   }
 
   @GetMapping("/reports")
@@ -36,9 +46,16 @@ public class ReportController {
   }
 
   @PostMapping("/reports")
-  public ReportEntity addReport(@RequestBody ReportEntity report) {
-    report.setId(0);
-    return reportService.save(report);
+  public ReportEntity addReport(@RequestBody Report report) {
+
+    ReportEntity reportEntity = new ReportEntity();
+
+    UserEntity creator = userService.findById(report.getCreatorId());
+    reportEntity.setUser(creator);
+    PostEntity post = postService.findById(report.getPostId());
+    reportEntity.setPost(post);
+
+    return reportService.save(reportEntity);
   }
 
   @PutMapping("/reports")

@@ -7,12 +7,18 @@ import com.forum.microservice.postcomment.exceptions.LikeNotFoundException;
 import com.forum.microservice.postcomment.model.Like;
 import com.forum.microservice.postcomment.service.LikeService;
 import com.forum.microservice.postcomment.service.PostService;
+import com.forum.microservice.postcomment.service.SubforumService;
 import com.forum.microservice.postcomment.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/post-com")
@@ -20,7 +26,8 @@ public class LikeController {
     private LikeService likeService;
     private UserService userService;
     private PostService postService;
-
+    @Autowired
+    public RestTemplate restTemplate;
 
     @Autowired
     public LikeController(LikeService likeService, UserService userService, PostService postService) {
@@ -47,12 +54,29 @@ public class LikeController {
     }
     @PostMapping("/likes")
 
-    public LikeEntity addLike(@RequestBody Like like) {
+    public LikeEntity addLike(@RequestBody Like like) throws URISyntaxException {
        LikeEntity likeEntity = new LikeEntity();
+       likeEntity.setLiked(true);
         UserEntity user = userService.findById(like.getVoterId());
        likeEntity.setVoter(user);
         PostEntity post = postService.findById(like.getPostId());
         likeEntity.setPost(post);
+
+
+        RestTemplate restTemplate = new RestTemplate();
+        URI uri = new URI("http://localhost:8080/notification/notification/notifications");
+
+        UserEntity kreator = post.getCreator();
+
+        Map<String, Object> params = new HashMap<>();
+
+        params.put("text", "Your post '" + post.getTitle() + "' got liked");
+        params.put("receiverId", kreator.getId());
+
+        ResponseEntity<String> response = restTemplate.postForEntity( uri, params, String.class );
+
+        System.out.println(response);
+
         return likeService.save(likeEntity);
 
     }

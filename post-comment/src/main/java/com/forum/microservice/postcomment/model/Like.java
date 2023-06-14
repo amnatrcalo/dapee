@@ -19,4 +19,12 @@ public class Like {
     public void setPostId(Integer postId) {
         this.postId = postId;
     }
+
+    public Like(Integer voterId, Integer postId) {
+        this.voterId = voterId;
+        this.postId = postId;
+    }
+
+    public Like() {
+    }
 }
